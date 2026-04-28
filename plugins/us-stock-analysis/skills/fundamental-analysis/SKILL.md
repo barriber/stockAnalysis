@@ -71,43 +71,43 @@ When `--visual` flag is used, include chart data tables for key metrics:
 **Chart Type**: Line chart with dual Y-axis
 **Data Table**:
 ```
-Year    Revenue ($M)    Revenue Growth %    Net Income ($M)    EPS ($)
-2020    [value]         [%]                 [value]            [value]
-2021    [value]         [%]                 [value]            [value]
-2022    [value]         [%]                 [value]            [value]
-2023    [value]         [%]                 [value]            [value]
-2024    [value]         [%]                 [value]            [value]
+Year      Revenue ($M)    Revenue Growth %    Net Income ($M)    EPS ($)
+Year-4    [value]         [%]                 [value]            [value]
+Year-3    [value]         [%]                 [value]            [value]
+Year-2    [value]         [%]                 [value]            [value]
+Year-1    [value]         [%]                 [value]            [value]
+Year      [value]         [%]                 [value]            [value]
 ```
 
 ### 2. Profit Margin Trends
 **Chart Type**: Line chart with percentage Y-axis
 **Data Table**:
 ```
-Year    Gross Margin %    Operating Margin %    Net Margin %    Industry Avg %
-2020    [%]              [%]                   [%]             [%]
-2021    [%]              [%]                   [%]             [%]
-2022    [%]              [%]                   [%]             [%]
-2023    [%]              [%]                   [%]             [%]
-2024    [%]              [%]                   [%]             [%]
+Year      Gross Margin %    Operating Margin %    Net Margin %    Industry Avg %
+Year-4    [%]              [%]                   [%]             [%]
+Year-3    [%]              [%]                   [%]             [%]
+Year-2    [%]              [%]                   [%]             [%]
+Year-1    [%]              [%]                   [%]             [%]
+Year      [%]              [%]                   [%]             [%]
 ```
 
 ### 3. Balance Sheet Composition
 **Chart Type**: Stacked bar chart
 **Data Table**:
 ```
-Year    Current Assets ($M)    Fixed Assets ($M)    Intangibles ($M)    Total Assets ($M)
-2020    [value]               [value]              [value]             [value]
-2021    [value]               [value]              [value]             [value]
-2022    [value]               [value]              [value]             [value]
-2023    [value]               [value]              [value]             [value]
-2024    [value]               [value]              [value]             [value]
+Year      Current Assets ($M)    Fixed Assets ($M)    Intangibles ($M)    Total Assets ($M)
+Year-4    [value]               [value]              [value]             [value]
+Year-3    [value]               [value]              [value]             [value]
+Year-2    [value]               [value]              [value]             [value]
+Year-1    [value]               [value]              [value]             [value]
+Year      [value]               [value]              [value]             [value]
 
-Year    Current Liab ($M)    Long-term Debt ($M)    Equity ($M)    Total L+E ($M)
-2020    [value]             [value]                [value]        [value]
-2021    [value]             [value]                [value]        [value]
-2022    [value]             [value]                [value]        [value]
-2023    [value]             [value]                [value]        [value]
-2024    [value]             [value]                [value]        [value]
+Year      Current Liab ($M)    Long-term Debt ($M)    Equity ($M)    Total L+E ($M)
+Year-4    [value]             [value]                [value]        [value]
+Year-3    [value]             [value]                [value]        [value]
+Year-2    [value]             [value]                [value]        [value]
+Year-1    [value]             [value]                [value]        [value]
+Year      [value]             [value]                [value]        [value]
 ```
 
 ### 4. Cash Flow Waterfall
@@ -148,7 +148,7 @@ $150B ┤                            ╭──────╯
 $100B ┤                     ╭──────╯
 $50B  ┤              ╭──────╯
       └──────┬───────┬───────┬───────┬───────┬──
-           2020    2021    2022    2023    2024
+          Year-4  Year-3  Year-2  Year-1   Year
 ```
 
 ### Integration with Report Generator

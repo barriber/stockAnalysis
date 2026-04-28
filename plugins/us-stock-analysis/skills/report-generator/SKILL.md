@@ -186,7 +186,7 @@ Generate standalone HTML file with the following structure:
         new Chart(revenueCtx, {
             type: 'line',
             data: {
-                labels: ['2020', '2021', '2022', '2023', '2024'],
+                labels: ['Year-4', 'Year-3', 'Year-2', 'Year-1', 'Year'],
                 datasets: [{
                     label: 'Revenue ($B)',
                     data: [100, 120, 145, 175, 210],
@@ -218,7 +218,7 @@ When receiving analysis data, structure chart data as follows:
 {
     chartType: 'line',
     title: 'Revenue Growth Trend',
-    xAxis: ['2020', '2021', '2022', '2023', '2024'],
+    xAxis: ['Year-4', 'Year-3', 'Year-2', 'Year-1', 'Year'],
     datasets: [
         {
             label: 'Revenue ($B)',
@@ -235,12 +235,12 @@ When receiving analysis data, structure chart data as follows:
     xAxis: ['Q1', 'Q2', 'Q3', 'Q4'],
     datasets: [
         {
-            label: '2023',
+            label: 'Prior Year',
             data: [1.2, 1.5, 1.8, 2.1],
             color: '#2563eb'
         },
         {
-            label: '2024',
+            label: 'Current Year',
             data: [1.5, 1.8, 2.2, 2.5],
             color: '#16a34a'
         }

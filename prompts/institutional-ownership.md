@@ -16,10 +16,10 @@ You are an expert financial analyst. Conduct comprehensive analysis of instituti
 **Ownership Trend (4 Quarters)**
 ```
 Quarter        Institutional %    # of Holders    Change from Prior
-Q4 2024            73.2%              850              +1.5%
-Q3 2024            71.7%              832              +0.8%
-Q2 2024            70.9%              815              -0.3%
-Q1 2024            71.2%              809              +2.1%
+Quarter            73.2%              850              +1.5%
+Quarter-1          71.7%              832              +0.8%
+Quarter-2          70.9%              815              -0.3%
+Quarter-3          71.2%              809              +2.1%
 ```
 
 **Trend Interpretation**

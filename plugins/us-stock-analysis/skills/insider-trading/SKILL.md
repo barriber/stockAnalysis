@@ -139,10 +139,10 @@ Track changes in insider ownership percentage:
 **Ownership Trend (12 months)**
 ```
 Quarter        Total Insider %    Change from Prior
-Q4 2024            15.2%            +0.3%
-Q3 2024            14.9%            -0.1%
-Q2 2024            15.0%            +0.5%
-Q1 2024            14.5%            +0.2%
+Quarter            15.2%            +0.3%
+Quarter-1          14.9%            -0.1%
+Quarter-2          15.0%            +0.5%
+Quarter-3          14.5%            +0.2%
 ```
 
 **Interpretation**

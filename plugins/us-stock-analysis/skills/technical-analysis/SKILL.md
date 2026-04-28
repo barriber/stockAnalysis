@@ -75,9 +75,9 @@ When `--chart` flag is used, include chart specifications and data tables:
 **Chart Type**: Candlestick chart with overlay lines
 **Data Table**:
 ```
-Date        Open      High      Low       Close     Volume      SMA_20    SMA_50    SMA_200
-2024-01-01  [price]   [price]   [price]   [price]   [volume]    [price]   [price]   [price]
-2024-01-02  [price]   [price]   [price]   [price]   [volume]    [price]   [price]   [price]
+Date    Open      High      Low       Close     Volume      SMA_20    SMA_50    SMA_200
+Day-1   [price]   [price]   [price]   [price]   [volume]    [price]   [price]   [price]
+Day     [price]   [price]   [price]   [price]   [volume]    [price]   [price]   [price]
 ...
 [Last 90 trading days for detailed view]
 ```
@@ -93,9 +93,9 @@ Date        Open      High      Low       Close     Volume      SMA_20    SMA_50
 **Chart Type**: Bar chart (synchronized with price chart)
 **Data Table**:
 ```
-Date        Volume      Avg_Volume_20    Above_Avg    Color
-2024-01-01  [volume]    [volume]         [Yes/No]     [Green/Red]
-2024-01-02  [volume]    [volume]         [Yes/No]     [Green/Red]
+Date    Volume      Avg_Volume_20    Above_Avg    Color
+Day-1   [volume]    [volume]         [Yes/No]     [Green/Red]
+Day     [volume]    [volume]         [Yes/No]     [Green/Red]
 ...
 ```
 
@@ -109,9 +109,9 @@ Date        Volume      Avg_Volume_20    Above_Avg    Color
 **Chart Type**: Line chart with overbought/oversold zones
 **Data Table**:
 ```
-Date        RSI_14    Overbought_70    Oversold_30    Signal
-2024-01-01  [value]   70               30             [Neutral/OB/OS]
-2024-01-02  [value]   70               30             [Neutral/OB/OS]
+Date    RSI_14    Overbought_70    Oversold_30    Signal
+Day-1   [value]   70               30             [Neutral/OB/OS]
+Day     [value]   70               30             [Neutral/OB/OS]
 ...
 ```
 
@@ -126,9 +126,9 @@ Date        RSI_14    Overbought_70    Oversold_30    Signal
 **Chart Type**: Line chart with histogram
 **Data Table**:
 ```
-Date        MACD      Signal    Histogram    Crossover
-2024-01-01  [value]   [value]   [value]      [None/Bullish/Bearish]
-2024-01-02  [value]   [value]   [value]      [None/Bullish/Bearish]
+Date    MACD      Signal    Histogram    Crossover
+Day-1   [value]   [value]   [value]      [None/Bullish/Bearish]
+Day     [value]   [value]   [value]      [None/Bullish/Bearish]
 ...
 ```
 
@@ -143,9 +143,9 @@ Date        MACD      Signal    Histogram    Crossover
 **Chart Type**: Overlay on price chart
 **Data Table**:
 ```
-Date        Price     BB_Upper    BB_Middle    BB_Lower    %B       Bandwidth
-2024-01-01  [price]   [price]     [price]      [price]     [value]  [value]
-2024-01-02  [price]   [price]     [price]      [price]     [value]  [value]
+Date    Price     BB_Upper    BB_Middle    BB_Lower    %B       Bandwidth
+Day-1   [price]   [price]     [price]      [price]     [value]  [value]
+Day     [price]   [price]     [price]      [price]     [value]  [value]
 ...
 ```
 
@@ -171,9 +171,9 @@ Fibonacci 61.8%  $[price]   N/A         -          -            Retracement leve
 **Chart Overlays**:
 ```
 Pattern Type              Start Date    End Date      Status        Target        Risk/Reward
-Head & Shoulders          2024-01-15    2024-02-10    Confirmed     $[price]      1:3.2
-Ascending Triangle        2024-02-01    Current       Forming       $[price]      1:2.5
-Flag Pattern             2024-02-05    2024-02-08    Complete      $[price]      1:2.8
+Head & Shoulders          [date]        [date]        Confirmed     $[price]      1:3.2
+Ascending Triangle        [date]        Current       Forming       $[price]      1:2.5
+Flag Pattern             [date]        [date]        Complete      $[price]      1:2.8
 ```
 
 **Visual Elements**:

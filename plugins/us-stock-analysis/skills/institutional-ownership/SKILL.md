@@ -22,10 +22,10 @@ Provide current snapshot of institutional holdings:
 **Ownership Trend (4 Quarters)**
 ```
 Quarter        Institutional %    # of Holders    Change from Prior
-Q4 2024            73.2%              850              +1.5%
-Q3 2024            71.7%              832              +0.8%
-Q2 2024            70.9%              815              -0.3%
-Q1 2024            71.2%              809              +2.1%
+Quarter            73.2%              850              +1.5%
+Quarter-1          71.7%              832              +0.8%
+Quarter-2          70.9%              815              -0.3%
+Quarter-3          71.2%              809              +2.1%
 ```
 
 **Trend Interpretation**
@@ -224,7 +224,7 @@ Analyze relationship between ownership changes and stock performance:
 
 **Performance During Institutional Activity**
 ```
-Period: Q4 2024
+Period: Latest Quarter
 Institutional Change: +2.5% ownership (net buying)
 Stock Price Change: +18.5%
 S&P 500 Change: +8.2%
@@ -440,7 +440,7 @@ Stock performance during periods of institutional buying/selling
 ```
 User: /institutional-ownership NVDA
 
-Claude: Analyzes latest 13F filings (Q4 2024), identifies:
+Claude: Analyzes latest 13F filings (latest quarter), identifies:
 - Institutional ownership increased to 65% (from 62%)
 - ARK Invest added $500M position (new holding)
 - Berkshire added to existing position (+15%)
