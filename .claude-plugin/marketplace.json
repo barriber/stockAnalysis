@@ -13,12 +13,9 @@
       "name": "us-stock-analysis",
       "source": "./plugins/us-stock-analysis",
       "description": "Comprehensive US stock evaluation: fundamental, technical, economic, DCF, multi-method valuation, financial report analysis, options, dividends, insider trading, institutional ownership, and more",
-      "version": "1.4.1",
       "author": {
         "name": "yennanliu"
-      },
-      "category": "finance",
-      "keywords": ["stock", "investment", "analysis", "us-markets", "finance", "dcf", "valuation", "10-k", "10-q", "financial-reports"]
+      }
     }
   ]
 }
