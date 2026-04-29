@@ -50,14 +50,20 @@ Every SKILL.md and every `prompts/*.md` must end with a standardized Investment 
 
 See `ADDING-NEW-SKILLS.md` for the full walkthrough. Key steps:
 
-1. Create `plugins/us-stock-analysis/skills/<name>/SKILL.md` with frontmatter
+1. Create `plugins/us-stock-analysis/skills/<name>/SKILL.md` with frontmatter (`name:` and `description:` fields)
 2. Create `prompts/<name>.md` — same content, no frontmatter, no platform-specific syntax
-3. Add skill name to `skills` array in `plugins/us-stock-analysis/.claude-plugin/plugin.json`
+3. (No manifest edit needed.) `plugin.json` declares `"skills": "./skills/"` once; new skill directories under that path are auto-discovered by Claude Code on `/reload-plugins`.
 4. Bump version in both `plugin.json` and `.claude-plugin/marketplace.json` (must match)
 5. Update `.cursor/rules/invest-skill.mdc`, `.github/copilot-instructions.md`, `GEMINI.md`
 6. Update `README.md` and platform-specific `README-*.md` files
 7. Add entry to `CHANGELOG.md`
-8. Run `npm test` to confirm 270+ tests pass
+8. Run `npm test` to confirm tests pass
+
+### Skill invocation
+
+Plugin skills are namespaced: invoke as `/us-stock-analysis:<skill-name> [args]`
+(e.g. `/us-stock-analysis:fundamental-analysis goog`), not as `/<skill-name>`.
+The namespace prefix matches the `name` field in `plugin.json`.
 
 ## Version Consistency Rule
 
@@ -69,7 +75,7 @@ Verify with: `jq '.version' plugins/us-stock-analysis/.claude-plugin/plugin.json
 
 ## Current State
 
-- **Version**: 1.4.0
-- **Skills**: 18 (listed in `plugin.json`)
+- **Version**: 1.4.2
+- **Skills**: 18 (auto-discovered from `plugins/us-stock-analysis/skills/`; `plugin.json` declares `"skills": "./skills/"`)
 - **Prompts**: 17 universal files in `prompts/` (research-bundle is meta-only, has no standalone prompt)
 - **Node**: ≥18.0.0 required

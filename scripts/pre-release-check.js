@@ -18,7 +18,8 @@ console.log('🔍 Running pre-release validation checks...\n');
 
 /**
  * ─────────────────────────────────────────────────────────────────
- * 1. CHECK: All 18 skills registered in plugin.json
+ * 1. CHECK: plugin.json skills field points to ./skills/
+ *           and skills/ contains the expected count
  * ─────────────────────────────────────────────────────────────────
  */
 function checkSkillsRegistry() {
@@ -26,39 +27,32 @@ function checkSkillsRegistry() {
 
   const pluginJsonPath = path.join(ROOT, 'plugins/us-stock-analysis/.claude-plugin/plugin.json');
   const pluginJson = JSON.parse(fs.readFileSync(pluginJsonPath, 'utf8'));
-  const registeredSkills = pluginJson.skills || [];
+  const skillsField = pluginJson.skills;
+
+  // Claude Code's plugin schema: "skills" is a path string (or array of paths),
+  // not an array of skill names. The skills/ directory is auto-discovered.
+  if (skillsField === undefined) {
+    console.log('   plugin.json: "skills" field omitted (default ./skills/ used)');
+  } else if (skillsField === './skills/') {
+    console.log('   plugin.json: "skills" → "./skills/"');
+  } else {
+    console.log(`   ✗ INVALID: plugin.json "skills" must be "./skills/" (got ${JSON.stringify(skillsField)})`);
+    errors++;
+  }
 
   const skillsDir = path.join(ROOT, 'plugins/us-stock-analysis/skills');
   const actualSkills = fs.readdirSync(skillsDir).filter(f => {
     return fs.statSync(path.join(skillsDir, f)).isDirectory();
   });
 
-  console.log(`   Registered: ${registeredSkills.length} skills`);
-  console.log(`   Actual: ${actualSkills.length} skills`);
-
-  // Check for missing registrations
-  actualSkills.forEach(skill => {
-    if (!registeredSkills.includes(skill)) {
-      console.log(`   ✗ MISSING: "${skill}" in plugin.json`);
-      errors++;
-    }
-  });
-
-  // Check for orphaned registrations
-  registeredSkills.forEach(skill => {
-    if (!actualSkills.includes(skill)) {
-      console.log(`   ✗ ORPHANED: "${skill}" registered but directory missing`);
-      errors++;
-    }
-  });
+  console.log(`   Skills on disk: ${actualSkills.length}`);
 
   if (actualSkills.length !== 18) {
     console.log(`   ⚠️  WARNING: Expected 18 skills, found ${actualSkills.length}`);
     warnings++;
   } else {
-    console.log('   ✅ All 18 skills registered correctly');
+    console.log('   ✅ All 18 skill directories present');
   }
-  console.log('');
 }
 
 /**

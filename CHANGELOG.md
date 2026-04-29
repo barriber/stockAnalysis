@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.2] - 2026-04-29
+
+### Fixed
+- Plugin manifest now correctly registers the skills directory. The `skills` field
+  in `plugins/us-stock-analysis/.claude-plugin/plugin.json` was set to `[]`
+  (empty array), which Claude Code interprets as "this plugin has zero skills"
+  and explicitly suppresses auto-discovery. As a result, none of the 18 skills
+  loaded — typing `/us-stock-analysis:fundamental-analysis` returned an unknown-
+  skill error. Changed to `"./skills/"` (a directory path), per Claude Code's
+  plugin schema, which restores skill loading.
+- Note on invocation: plugin skills are namespaced. Use
+  `/us-stock-analysis:<skill-name>` (e.g. `/us-stock-analysis:fundamental-analysis goog`),
+  not the bare `/<skill-name>`.
+
+### Changed
+- Validation scripts (`scripts/test-skills.js`, `scripts/pre-release-check.js`,
+  `scripts/integration-tests.js`, `scripts/release-dry-run.js`) now treat the
+  `skills/` directory as the source of truth instead of reading a name array
+  from `plugin.json`. The previous "skills registry" array was a project
+  convention that conflicted with Claude Code's actual schema (the field is a
+  path, not a list of names).
+
 ## [1.4.1] - 2026-04-29
 
 ### Improved

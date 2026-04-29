@@ -55,12 +55,13 @@ function isPrereleaseVersion(version) {
 }
 
 /**
- * Count skills
+ * Count skills (auto-discovered from the skills/ directory)
  */
 function countSkills() {
-  const pluginPath = path.join(ROOT, 'plugins/us-stock-analysis/.claude-plugin/plugin.json');
-  const plugin = JSON.parse(fs.readFileSync(pluginPath, 'utf8'));
-  return plugin.skills.length;
+  const skillsDir = path.join(ROOT, 'plugins/us-stock-analysis/skills');
+  return fs.readdirSync(skillsDir).filter(f =>
+    fs.statSync(path.join(skillsDir, f)).isDirectory()
+  ).length;
 }
 
 /**

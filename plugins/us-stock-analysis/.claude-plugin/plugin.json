@@ -1,12 +1,12 @@
 {
   "name": "us-stock-analysis",
   "description": "Comprehensive US stock evaluation with fundamental, technical, economic, valuation, and financial report analysis",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": {
     "name": "yennanliu"
   },
   "homepage": "https://github.com/barriber/stockAnalysis",
   "license": "MIT",
   "keywords": [],
-  "skills": []
+  "skills": "./skills/"
 }

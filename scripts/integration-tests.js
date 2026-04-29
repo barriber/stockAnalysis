@@ -145,7 +145,12 @@ function testPlatformArtifacts() {
     
     const plugin = JSON.parse(fs.readFileSync(pluginPath, 'utf8'));
     if (!plugin.version) throw new Error('No version in plugin.json');
-    if (!Array.isArray(plugin.skills)) throw new Error('No skills array in plugin.json');
+    // Claude Code's plugin schema: "skills" is a directory path (string) or array of paths.
+    // Skills are auto-discovered from the directory; the field is not a list of names.
+    const skillsField = plugin.skills;
+    if (skillsField !== undefined && skillsField !== './skills/' && !Array.isArray(skillsField)) {
+      throw new Error(`plugin.json "skills" must be "./skills/" or an array of paths, got ${JSON.stringify(skillsField)}`);
+    }
   });
 
   test('Marketplace manifest exists', () => {
@@ -237,24 +242,23 @@ function testChecksumValidation() {
  * Test: No duplicate skills
  */
 function testNoDuplicateSkills() {
-  test('No duplicate skills in registry', () => {
-    const pluginPath = path.join(ROOT, 'plugins/us-stock-analysis/.claude-plugin/plugin.json');
-    const plugin = JSON.parse(fs.readFileSync(pluginPath, 'utf8'));
-    
-    const skills = plugin.skills;
-    const uniqueSkills = new Set(skills);
-    
-    if (skills.length !== uniqueSkills.size) {
-      throw new Error(`Duplicate skills detected (${skills.length} total, ${uniqueSkills.size} unique)`);
+  // Source of truth for the skill list is the skills/ directory itself
+  // (Claude Code auto-discovers from the path declared in plugin.json's "skills" field).
+  const skillsDir = path.join(ROOT, 'plugins/us-stock-analysis/skills');
+  const skillNames = fs.readdirSync(skillsDir).filter(f =>
+    fs.statSync(path.join(skillsDir, f)).isDirectory()
+  );
+
+  test('No duplicate skill directories', () => {
+    const uniqueSkills = new Set(skillNames);
+    if (skillNames.length !== uniqueSkills.size) {
+      throw new Error(`Duplicate skills detected (${skillNames.length} total, ${uniqueSkills.size} unique)`);
     }
   });
 
-  test('All registered skills have SKILL.md', () => {
-    const pluginPath = path.join(ROOT, 'plugins/us-stock-analysis/.claude-plugin/plugin.json');
-    const plugin = JSON.parse(fs.readFileSync(pluginPath, 'utf8'));
-    
-    plugin.skills.forEach(skill => {
-      const skillPath = path.join(ROOT, `plugins/us-stock-analysis/skills/${skill}/SKILL.md`);
+  test('All skill directories have SKILL.md', () => {
+    skillNames.forEach(skill => {
+      const skillPath = path.join(skillsDir, skill, 'SKILL.md');
       if (!fs.existsSync(skillPath)) {
         throw new Error(`Missing SKILL.md for ${skill}`);
       }
@@ -264,10 +268,6 @@ function testNoDuplicateSkills() {
   test('All prompts have corresponding skills', () => {
     const promptsDir = path.join(ROOT, 'prompts');
     const prompts = fs.readdirSync(promptsDir).filter(f => f.endsWith('.md'));
-    const pluginPath = path.join(ROOT, 'plugins/us-stock-analysis/.claude-plugin/plugin.json');
-    const plugin = JSON.parse(fs.readFileSync(pluginPath, 'utf8'));
-    
-    const skillNames = plugin.skills;
     const promptNames = prompts.map(p => p.replace('.md', ''));
     
     // report-generator is excluded from prompts (it's a tool, not an analysis framework)

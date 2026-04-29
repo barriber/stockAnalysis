@@ -141,36 +141,33 @@ if (marketplace && pluginJson) {
   }
 }
 
-// ─── Test 4: Skills Registry — plugin.json ↔ Directories ───────────────────
+// ─── Test 4: Skills Manifest Path & Directory Listing ──────────────────────
 
-section('4. Skills Registry (plugin.json ↔ Directories)');
+section('4. Skills Manifest Path');
 
-const registeredSkills = (pluginJson && pluginJson.skills) ? pluginJson.skills : [];
+// Claude Code's plugin schema for the "skills" field is a directory path string
+// (or an array of paths). The skills themselves are auto-discovered from disk.
+// Source of truth for the skill list is the skills/ directory.
+const skillsField = pluginJson ? pluginJson.skills : undefined;
+if (skillsField === undefined) {
+  pass('plugin.json — "skills" field omitted (default ./skills/ auto-discovery)');
+} else if (typeof skillsField === 'string' && skillsField === './skills/') {
+  pass(`plugin.json — "skills" points to ./skills/ directory`);
+} else {
+  fail(`plugin.json — "skills" must be "./skills/" (got ${JSON.stringify(skillsField)})`);
+}
+
 const actualSkillDirs = fs.existsSync(SKILLS_DIR)
   ? fs.readdirSync(SKILLS_DIR).filter(d =>
       fs.statSync(path.join(SKILLS_DIR, d)).isDirectory()
     )
   : [];
 
-// Every registered skill must have a directory
-registeredSkills.forEach(skill => {
-  if (actualSkillDirs.includes(skill)) {
-    pass(`Registered skill "${skill}" has directory`);
-  } else {
-    fail(`Registered skill "${skill}" has NO directory in skills/`);
-  }
-});
-
-// Every directory must be registered
-actualSkillDirs.forEach(dir => {
-  if (registeredSkills.includes(dir)) {
-    pass(`Directory "${dir}" is registered in plugin.json`);
-  } else {
-    fail(`Directory "${dir}" exists but is NOT registered in plugin.json skills[]`);
-  }
-});
-
-pass(`Total skills: ${registeredSkills.length} registered, ${actualSkillDirs.length} directories`);
+if (actualSkillDirs.length > 0) {
+  pass(`Total skills on disk: ${actualSkillDirs.length}`);
+} else {
+  fail('No skill directories found under plugins/us-stock-analysis/skills/');
+}
 
 // ─── Test 5: SKILL.md Quality Checks ────────────────────────────────────────
 
@@ -179,7 +176,7 @@ section('5. SKILL.md Quality Checks');
 const MIN_SKILL_LINES = 50;
 const MIN_SKILL_WORDS = 400;
 
-registeredSkills.forEach(skill => {
+actualSkillDirs.forEach(skill => {
   const skillFile = path.join(SKILLS_DIR, skill, 'SKILL.md');
 
   if (!fileExists(skillFile)) {
@@ -233,7 +230,7 @@ registeredSkills.forEach(skill => {
 section('6. Prompts Directory Sync (skill ↔ prompts/*.md)');
 
 
-registeredSkills.forEach(skill => {
+actualSkillDirs.forEach(skill => {
   if (PROMPTS_EXCLUDED.includes(skill)) {
     pass(`${skill} — excluded from prompts sync check (output tool)`);
     return;
@@ -243,7 +240,7 @@ registeredSkills.forEach(skill => {
   if (fileExists(promptFile)) {
     pass(`prompts/${skill}.md — exists`);
   } else {
-    fail(`prompts/${skill}.md — MISSING (skill registered but no universal prompt)`);
+    fail(`prompts/${skill}.md — MISSING (skill on disk but no universal prompt)`);
   }
 });
 
