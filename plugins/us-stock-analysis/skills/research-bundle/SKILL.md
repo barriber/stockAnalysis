@@ -1,5 +1,6 @@
 ---
-description: Comprehensive stock research by chaining multiple analysis skills into a unified investment thesis
+name: research-bundle
+description: Run a full stock-research workflow by chaining fundamental, valuation, competitive, and technical skills into a unified investment thesis with a composite score. Use when the user asks "full research on X", "complete due diligence on X", "deep dive on X", "should I buy X", "research bundle for X", or wants the entire analysis pipeline executed end-to-end.
 ---
 
 # Research Bundle

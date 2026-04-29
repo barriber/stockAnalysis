@@ -1,5 +1,6 @@
 ---
-description: Generate professional HTML/PDF investment reports with interactive visualizations
+name: report-generator
+description: Generate a professional HTML/PDF investment report with interactive charts and visualizations. Use when the user asks "create a report", "export the analysis", "generate PDF", "make a tearsheet", "write up the thesis", or after a research-bundle run to produce the final deliverable.
 ---
 
 # Report Generator

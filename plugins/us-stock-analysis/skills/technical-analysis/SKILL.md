@@ -1,5 +1,6 @@
 ---
-description: Technical analysis of US stocks using charts and indicators
+name: technical-analysis
+description: Analyze US stock charts using price action, patterns, support/resistance, and indicators (RSI, MACD, moving averages). Use when the user asks "technical analysis of X", "chart of X", "is X overbought", "support and resistance for X", "trend analysis", "is the breakout real", or wants entry/exit timing context.
 ---
 
 # Technical Analysis

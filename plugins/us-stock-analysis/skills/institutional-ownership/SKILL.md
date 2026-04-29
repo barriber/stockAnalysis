@@ -1,5 +1,6 @@
 ---
-description: Track changes in institutional holdings and identify smart money moves from 13F filings
+name: institutional-ownership
+description: Analyze institutional holdings and 13F filings to track smart-money positioning and ownership concentration. Use when the user asks "who owns X", "smart money in X", "13F analysis", "is Berkshire buying X", "hedge fund holdings", or wants to see institutional accumulation or distribution trends.
 ---
 
 # Institutional Ownership Analysis

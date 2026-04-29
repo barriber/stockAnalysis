@@ -1,5 +1,6 @@
 ---
-description: Multi-method stock valuation using DCF, comparable company analysis, EV multiples, and residual income models
+name: stock-valuation
+description: Triangulate intrinsic value across DCF, comparable company analysis, EV/EBITDA, and residual income models, producing a probability-weighted target price. Use when the user asks "what's a fair price for X", "valuation of X", "multi-method valuation", "comps analysis for X", "EV/EBITDA on X", "football field for X", or wants cross-validated valuation across methods.
 ---
 
 # Stock Valuation

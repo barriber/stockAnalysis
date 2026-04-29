@@ -1,5 +1,6 @@
 ---
-description: Analyze US economic indicators and their impact on markets
+name: economics-analysis
+description: Analyze US economic indicators (GDP, CPI, NFP, PMI, Fed policy) and their impact on equity markets. Use when the user asks "what's the macro picture", "Fed rate impact", "CPI/inflation analysis", "where are we in the cycle", "economic outlook", or wants macro context for investment decisions.
 ---
 
 # US Economics Analysis

@@ -1,5 +1,6 @@
 ---
-description: Review and analyze investment portfolio performance and allocation
+name: portfolio-review
+description: Review portfolio performance, risk-adjusted returns, allocation, and concentration. Use when the user asks "review my portfolio", "rebalance suggestions", "portfolio risk analysis", "Sharpe ratio of my holdings", "am I diversified", or shares a holdings list and wants optimization recommendations.
 ---
 
 # Portfolio Review

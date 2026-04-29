@@ -1,5 +1,6 @@
 ---
-description: Track and analyze insider buying/selling activity from SEC Form 4 filings
+name: insider-trading
+description: Analyze insider buying and selling from SEC Form 4 filings to identify investment signals and red flags. Use when the user asks "are insiders buying", "insider activity for X", "Form 4 analysis", "is the CEO selling", "cluster buying signal", or wants to read management's signals from their own transactions.
 ---
 
 # Insider Trading Analysis

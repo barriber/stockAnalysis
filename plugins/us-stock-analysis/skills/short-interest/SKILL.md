@@ -1,5 +1,6 @@
 ---
-description: Analyze short interest, short squeeze potential, and bearish positioning signals
+name: short-interest
+description: Analyze FINRA short interest data, squeeze potential, cost-of-borrow, and bearish positioning signals. Use when the user asks "short interest for X", "is X a short squeeze candidate", "days to cover", "borrow rate on X", "is X heavily shorted", or wants to assess directional risk from short positioning.
 ---
 
 # Short Interest Analysis

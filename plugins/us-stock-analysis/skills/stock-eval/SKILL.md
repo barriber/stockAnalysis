@@ -1,5 +1,6 @@
 ---
-description: Evaluate US stocks with comprehensive fundamental and valuation analysis
+name: stock-eval
+description: Comprehensive single-stock evaluation combining fundamentals, valuation, quality scoring, and risk assessment into an investment-grade conclusion. Use when the user asks "evaluate X", "is X a buy", "should I buy X", "quick take on X", "rate this stock", or wants a one-stop verdict shorter than a full research bundle.
 ---
 
 # US Stock Evaluation

@@ -1,5 +1,6 @@
 ---
-description: Analyze US market sectors and identify rotation opportunities
+name: sector-analysis
+description: Analyze the 11 S&P 500 sectors and identify rotation opportunities based on the economic cycle. Use when the user asks "which sectors to buy now", "sector rotation analysis", "best sector for late cycle", "tech vs financials", "where are we in the cycle for sectors", or wants top-down sector positioning.
 ---
 
 # Sector Analysis

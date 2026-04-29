@@ -1,5 +1,6 @@
 ---
-description: Analyze options Greeks, implied volatility, and strategy selection for US stocks
+name: options-analysis
+description: Analyze options Greeks, implied volatility, and strategy selection for US-listed equity options. Use when the user asks "best options strategy for X", "is IV high", "covered call on X", "put spread on X", "Greeks analysis", "IV rank", or wants risk/reward frameworks for an options trade.
 ---
 
 # Options Analysis

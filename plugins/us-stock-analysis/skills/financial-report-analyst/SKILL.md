@@ -1,5 +1,6 @@
 ---
-description: Analyze company financial reports (10-K, 10-Q, annual reports) and extract actionable investment insights
+name: financial-report-analyst
+description: Extract investment insights from official SEC filings (10-K, 10-Q, 8-K, DEF 14A, earnings releases) and investor presentations. Use when the user asks "read the 10-K", "analyze the 10-Q", "what's in the annual report", "review the proxy statement", "footnote analysis", or pastes a filing and wants risk factors and accounting policies decoded.
 ---
 
 # Financial Report Analyst

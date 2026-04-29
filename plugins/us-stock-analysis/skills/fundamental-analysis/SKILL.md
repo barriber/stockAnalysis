@@ -1,5 +1,6 @@
 ---
-description: Deep fundamental analysis of US stocks using financial statements
+name: fundamental-analysis
+description: Conduct deep-dive fundamental analysis using income statement, balance sheet, and cash flow statement. Use when the user asks "fundamental analysis of X", "analyze X's financials", "is X profitable", "earnings quality of X", "ROIC and margins for X", or wants a financial-statement-driven view of business quality.
 ---
 
 # Fundamental Analysis

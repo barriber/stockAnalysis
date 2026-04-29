@@ -1,5 +1,6 @@
 ---
-description: Analyze earnings call transcripts for sentiment, key themes, and management tone
+name: earnings-call-analysis
+description: Analyze earnings call transcripts for sentiment, strategic themes, management tone, and red flags. Use when the user asks "summarize the earnings call", "what did management say about X", "earnings call sentiment", "Q&A analysis", or pastes a transcript and wants investment insights extracted.
 ---
 
 # Earnings Call Analysis

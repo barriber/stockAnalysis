@@ -1,5 +1,6 @@
 ---
-description: Discounted Cash Flow (DCF) intrinsic value modeling with sensitivity analysis
+name: dcf-valuation
+description: Build a Discounted Cash Flow (DCF) intrinsic value model with three-scenario sensitivity analysis for a US stock. Use when the user asks "what is X worth", "DCF valuation for X", "intrinsic value of X", "model the cash flows", "fair value of X", or wants a fair-value estimate independent of market sentiment.
 ---
 
 # DCF Valuation

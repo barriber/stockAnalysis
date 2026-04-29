@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-04-29
+
+### Improved
+- All 18 `SKILL.md` files now conform to Claude Code's skill format standard:
+  - Added `name:` field to frontmatter (kebab-case, matches directory name)
+  - Rewrote `description:` to be trigger-oriented with quoted user phrases ("Use when...")
+  - Improves skill discoverability — the skill discovery layer keyword-matches against the description,
+    so trigger phrasing materially improves activation accuracy
+- No changes to `prompts/*.md` (intentionally frontmatter-stripped per the dual-distribution model)
+
 ## [1.4.0] - 2026-02-27
 
 ### Added

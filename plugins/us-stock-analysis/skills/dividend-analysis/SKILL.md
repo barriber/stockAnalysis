@@ -1,5 +1,6 @@
 ---
-description: Analyze dividend safety, growth, and income investing opportunities
+name: dividend-analysis
+description: Analyze dividend safety, growth trajectory, yield sustainability, and income investing opportunities. Use when the user asks "is the dividend safe", "dividend growth analysis", "yield sustainability of X", "dividend cut risk", "income from X", or evaluates REITs and income-focused holdings.
 ---
 
 # Dividend Analysis

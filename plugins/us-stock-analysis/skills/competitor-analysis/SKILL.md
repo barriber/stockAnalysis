@@ -1,5 +1,6 @@
 ---
-description: Deep competitive moat analysis, market position assessment, and industry dynamics
+name: competitor-analysis
+description: Analyze a company's competitive moat, market position, and industry dynamics. Use when the user asks "how wide is the moat", "who are X's competitors", "competitive advantage of X", "industry analysis", or when /research-bundle needs the competitive context phase. Produces moat assessment, competitive benchmarking, and industry attractiveness scoring.
 ---
 
 # Competitor Analysis
