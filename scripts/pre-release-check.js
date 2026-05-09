@@ -47,11 +47,11 @@ function checkSkillsRegistry() {
 
   console.log(`   Skills on disk: ${actualSkills.length}`);
 
-  if (actualSkills.length !== 18) {
-    console.log(`   ⚠️  WARNING: Expected 18 skills, found ${actualSkills.length}`);
+  if (actualSkills.length !== 19) {
+    console.log(`   ⚠️  WARNING: Expected 19 skills, found ${actualSkills.length}`);
     warnings++;
   } else {
-    console.log('   ✅ All 18 skill directories present');
+    console.log('   ✅ All 19 skill directories present');
   }
 }
 
@@ -71,8 +71,8 @@ function checkPromptsSync() {
     return fs.statSync(path.join(skillsDir, f)).isDirectory();
   });
 
-  // Skills that don't need universal prompts (output tools, not analysis frameworks)
-  const promptsExcluded = ['report-generator'];
+  // Skills that don't need universal prompts (output tools / internal data utilities, not analysis frameworks)
+  const promptsExcluded = ['report-generator', 'fetch-stock-data'];
 
   // Check each skill has a corresponding prompt
   skillDirs.forEach(skill => {
@@ -216,8 +216,14 @@ function checkSignalBlocks() {
     return fs.statSync(path.join(skillsDir, f)).isDirectory();
   });
 
+  // Skills that legitimately don't produce a signal block (output tools / internal utilities)
+  const signalExcluded = ['report-generator', 'fetch-stock-data'];
+
   let missingSignal = 0;
   skills.forEach(skill => {
+    if (signalExcluded.includes(skill)) {
+      return;
+    }
     const skillMdPath = path.join(skillsDir, skill, 'SKILL.md');
     const content = fs.readFileSync(skillMdPath, 'utf8');
 

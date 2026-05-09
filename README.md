@@ -355,8 +355,8 @@ Found a bug? [Open an issue](https://github.com/yennanliu/InvestSkill/issues) wi
 <tr>
 <td width="50%">
 
-**Current Version:** 1.4.0  
-**Skills:** 18 frameworks  
+**Current Version:** 1.5.0  
+**Skills:** 19 (18 analysis + 1 internal data utility)  
 **Prompts:** 17 universal files  
 **Platforms:** 5 supported  
 

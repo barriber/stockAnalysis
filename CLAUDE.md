@@ -75,7 +75,18 @@ Verify with: `jq '.version' plugins/us-stock-analysis/.claude-plugin/plugin.json
 
 ## Current State
 
-- **Version**: 1.4.2
-- **Skills**: 18 (auto-discovered from `plugins/us-stock-analysis/skills/`; `plugin.json` declares `"skills": "./skills/"`)
-- **Prompts**: 17 universal files in `prompts/` (research-bundle is meta-only, has no standalone prompt)
+- **Version**: 1.5.0
+- **Skills**: 19 (auto-discovered from `plugins/us-stock-analysis/skills/`; `plugin.json` declares `"skills": "./skills/"`)
+- **Prompts**: 17 universal files in `prompts/` (`research-bundle` is meta-only; `report-generator` is HTML-output-only; `fetch-stock-data` is a Claude-Code-specific internal utility — none have standalone universal prompts)
 - **Node**: ≥18.0.0 required
+
+### Internal utility: `fetch-stock-data`
+
+`fetch-stock-data` is the plugin's only non-analysis skill. It bundles Python scripts under
+`plugins/us-stock-analysis/skills/fetch-stock-data/scripts/` that fetch live data (yfinance,
+FMP, FRED, SEC EDGAR) and return a compact JSON envelope with cross-source verification.
+
+- Invocation: `/us-stock-analysis:fetch-stock-data <TICKER> --fields=<csv>` (called by other skills)
+- Setup: `pip3 install -r .../scripts/requirements.txt`; export `FMP_API_KEY`, `FRED_API_KEY`
+- Tests: `python3 -m unittest discover plugins/us-stock-analysis/skills/fetch-stock-data/scripts/tests`
+- Excluded from the Investment Signal Block convention and the `prompts/` universal-form mirror.

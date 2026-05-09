@@ -1,6 +1,6 @@
 # InvestSkill — GitHub Copilot Setup & Usage Guide
 
-This repository contains 18 professional investment analysis frameworks for US stock markets. When working in this workspace, Copilot automatically loads these analysis methodologies to provide institutional-quality investment analysis.
+This repository contains 18 professional investment analysis frameworks for US stock markets. When working in this workspace, Copilot automatically loads these analysis methodologies to provide institutional-quality investment analysis. (A 19th skill, `fetch-stock-data`, is an internal Claude-Code-only utility — Python scripts that fetch live stock data — and is not exposed as a Copilot prompt.)
 
 ## Installation & Setup
 

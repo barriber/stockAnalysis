@@ -1,6 +1,6 @@
 # InvestSkill — Gemini CLI Setup & Usage Guide
 
-This project contains professional investment analysis prompt frameworks for US stock markets. When you run Gemini CLI in this directory, all 18 analysis frameworks are automatically available.
+This project contains professional investment analysis prompt frameworks for US stock markets. When you run Gemini CLI in this directory, all user-facing analysis frameworks are automatically available/.
 
 ## Installation & Setup
 

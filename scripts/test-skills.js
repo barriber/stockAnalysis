@@ -62,8 +62,8 @@ const PLUGIN_JSON = path.join(ROOT, 'plugins/us-stock-analysis/.claude-plugin/pl
 const MARKETPLACE_JSON = path.join(ROOT, '.claude-plugin/marketplace.json');
 
 // Skills excluded from specific checks
-const PROMPTS_EXCLUDED = ['report-generator'];  // HTML output tool, not an analysis prompt
-const SIGNAL_EXCLUDED  = ['report-generator'];  // Renders signal blocks in HTML, doesn't produce them
+const PROMPTS_EXCLUDED = ['report-generator', 'fetch-stock-data'];  // HTML output tool / internal data utility — neither has a universal prompt
+const SIGNAL_EXCLUDED  = ['report-generator', 'fetch-stock-data'];  // Renders signal blocks in HTML / produces JSON data, not investment signals
 
 const SIGNAL_BLOCK = '╔══════════════════════════════════════════════╗';
 const FRONTMATTER_START = /^---\s*$/m;

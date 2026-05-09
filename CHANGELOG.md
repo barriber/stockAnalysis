@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-05-02
+
+### Added
+- New internal utility skill `fetch-stock-data` — bundled Python scripts that fetch and verify
+  live stock data (price, TTM financials, balance sheet, multiples, analyst consensus, risk-free
+  rate) for use by other skills. Returns compact JSON envelope with cross-source verification,
+  accounting-identity checks, outlier rejection, and freshness scoring.
+  - Sources: Financial Modeling Prep `/stable/` API (price, beta, fundamentals, analyst
+    consensus — covers most fields natively), FRED (10Y Treasury via `DGS10`), SEC EDGAR
+    (XBRL cross-check), and yfinance as an optional fallback for live price/52w/short interest.
+  - All HTTP uses Python stdlib `urllib` — no third-party `requests` install needed.
+    yfinance is the only optional pip dependency, only required for `52w_high`, `52w_low`,
+    and `short_pct_float`.
+  - Verification rules: `ttm_fcf == ttm_ocf - ttm_capex`, `net_debt == debt - cash - st_inv`,
+    `market_cap == price × shares`, `total_debt == st_debt + lt_debt`. Outliers >3 OOM off the
+    pool are rejected (prevents trillion-scale scraper errors).
+  - Per-ticker per-UTC-day cache at `/tmp/fetch-stock-data-cache/` — avoids burning the FMP
+    250-req/day quota on repeat calls.
+  - Caller-skill contract: `/us-stock-analysis:fetch-stock-data <TICKER> --fields=<csv>`.
+    Field catalog covers price, income, cash flow, balance sheet, multiples, returns, risk
+    inputs, analyst consensus, dividends, segments, ownership, short interest.
+  - **Internal-only**: not invoked by users; called by `dcf-valuation`, `fundamental-analysis`,
+    `stock-eval`, `stock-valuation` to ground their inputs in live data instead of stale
+    knowledge. Excluded from the prompts/ universal-form (Claude-Code-specific) and from the
+    Investment Signal Block convention (it produces data, not analysis).
+  - Setup: `pip3 install -r .../scripts/requirements.txt` and free API keys
+    (`FMP_API_KEY`, `FRED_API_KEY`).
+  - 31 offline unit tests cover identities, outlier rejection, cross-source merge bands,
+    freshness, sign checks, cache IO, and the end-to-end JSON envelope.
+
+### Changed
+- Bumped plugin version `1.4.2` → `1.5.0` (minor, additive new skill).
+- `scripts/test-skills.js` — `PROMPTS_EXCLUDED` and `SIGNAL_EXCLUDED` arrays now include
+  `fetch-stock-data` (utility skill exception, like `report-generator`).
+- `scripts/pre-release-check.js` — expected skill count `18` → `19`; `signalExcluded` and
+  `promptsExcluded` arrays now include `fetch-stock-data`.
+- Total skills: 18 → 19. Universal prompts unchanged at 17 (the new skill is Claude-Code-only).
+
 ## [1.4.2] - 2026-04-29
 
 ### Fixed
