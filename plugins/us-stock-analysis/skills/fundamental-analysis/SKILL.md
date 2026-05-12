@@ -7,6 +7,27 @@ description: Conduct deep-dive fundamental analysis using income statement, bala
 
 Conduct deep-dive fundamental analysis of US stocks using financial statements and business metrics.
 
+## Step 0: Fetch Live Data (required)
+
+Before any analysis, fetch verified live numerics so this skill never anchors on
+training-cutoff knowledge for revenue, margins, or returns on capital:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,market_cap,ttm_revenue,ttm_gross_profit,ttm_op_income,ttm_net_income,ttm_eps,op_margin,net_margin,fcf_margin,rev_cagr_3y,rev_cagr_5y,rev_cagr_10y,eps_cagr_5y,roe,roa,roic,total_equity,total_debt,diluted_shares
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. If a field appears in `missing[]` or `errors[]`, fall back to the most recent
+published 10-K/10-Q value and explicitly flag it as
+"LLM-derived; verify against latest filing" in the final analysis.
+
+**Fields not yet exposed by `financial-manager`** (will appear in `missing[]`):
+
+- `gross_margin` — derive as `ttm_gross_profit / ttm_revenue`.
+- `pb`, `ps`, `ev_ebitda` — flag as LLM-derived in the multiples table.
+
+---
+
 ## Financial Statement Analysis
 
 1. **Income Statement Analysis**

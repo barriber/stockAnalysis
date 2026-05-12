@@ -15,6 +15,29 @@ DCF requires disciplined assumptions. Small changes in growth rate, margin, or d
 
 ---
 
+## Step 0: Fetch Live Data (required)
+
+Before any analysis, fetch verified live numerics so this DCF never anchors on
+training-cutoff knowledge for price, financials, beta, or risk-free rate:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,ttm_revenue,ttm_fcf,ttm_op_income,ttm_net_income,ttm_eps,ttm_tax_rate,ttm_sbc,fcf_margin,op_margin,diluted_shares,total_debt,st_investments,beta,rf_rate,erp,market_cap,rev_cagr_3y,rev_cagr_5y,rev_cagr_10y,analyst_revenue_2y,analyst_eps_2y
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. If a field appears in `missing[]` or `errors[]`, fall back to the most recent
+published 10-K/10-Q value and explicitly flag it as
+"LLM-derived; verify against latest filing" in the final DCF.
+
+**Fields not yet exposed by `financial-manager`** (will appear in `missing[]`):
+
+- `ttm_ocf`, `ttm_capex` — flag as LLM-derived in the FCF reconciliation.
+- `cash`, `net_debt` — derive `net_debt ≈ total_debt − st_investments`
+  (short-term investments as a cash proxy); flag the imprecision.
+- `ev_fcf` — flag as LLM-derived for the exit-multiple terminal value cross-check.
+
+---
+
 ## Step-by-Step DCF Methodology
 
 ### Step 1: Establish Base Metrics

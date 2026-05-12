@@ -1,6 +1,6 @@
 ---
 name: fetch-stock-data
-description: Internal utility skill that fetches and verifies live stock data (price, TTM financials, balance sheet, multiples, analyst consensus, risk-free rate) from the user's self-hosted financial-manager Next.js API via a bundled Python client. NOT FOR DIRECT USER INVOCATION — called by other skills (dcf-valuation, fundamental-analysis, stock-eval, stock-valuation) before they begin analysis. Returns compact JSON with accounting-identity checks and freshness validation. Use when an analysis skill needs current, verified market data instead of relying on stale knowledge.
+description: Internal utility skill that fetches and verifies live stock data (price, TTM financials, balance sheet, multiples, analyst consensus, risk-free rate) from the user's self-hosted financial-manager Next.js API via a bundled Python client. NOT FOR DIRECT USER INVOCATION — called by every data-consuming analysis skill in this plugin (dcf-valuation, fundamental-analysis, stock-eval, stock-valuation, dividend-analysis, short-interest, institutional-ownership, competitor-analysis, insider-trading, technical-analysis) before they begin analysis. Returns compact JSON with accounting-identity checks and freshness validation. Use when an analysis skill needs current, verified market data instead of relying on stale knowledge.
 ---
 
 # fetch-stock-data — Internal Data Utility

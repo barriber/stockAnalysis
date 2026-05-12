@@ -7,6 +7,26 @@ description: Analyze dividend safety, growth trajectory, yield sustainability, a
 
 Comprehensive analysis of dividend safety, growth trajectory, yield sustainability, and income investing opportunities for US-listed stocks, REITs, and income-focused portfolios.
 
+## Step 0: Fetch Live Data (required)
+
+Before any safety scoring, fetch verified live numerics so this skill never anchors
+on training-cutoff knowledge for yield, payout, or coverage:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,market_cap,ttm_revenue,ttm_net_income,ttm_eps,ttm_fcf,total_debt,st_investments,div_yield,div_payout,div_growth_5y,fcf_margin,roe
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. If a field appears in `missing[]` or `errors[]`, fall back to the most recent
+published 10-K/10-Q value and explicitly flag it as
+"LLM-derived; verify against latest filing" in the final assessment.
+
+All required fields are catalog-supported today; no major gaps. Note that
+debt/EBITDA must be derived from `total_debt` plus an LLM-supplied EBITDA when
+EBITDA is needed.
+
+---
+
 ## Analysis Framework
 
 ### 1. Dividend Safety Analysis

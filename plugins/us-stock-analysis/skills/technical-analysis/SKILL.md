@@ -7,6 +7,24 @@ description: Analyze US stock charts using price action, patterns, support/resis
 
 Perform technical analysis of US stocks using price action, chart patterns, and technical indicators.
 
+## Step 0: Fetch Live Data (required)
+
+Before any chart read, fetch verified live numerics so this skill never anchors on
+training-cutoff knowledge for price, 52w range, or volume:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,change,change_pct,volume,52w_high,52w_low,market_cap,beta
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for the spot price,
+52-week range, and volume context. Historical OHLCV time series and indicator
+inputs (RSI, MACD, moving averages) are not in the catalog today — those continue
+to rely on chart data the LLM observes directly. If a field appears in `missing[]`
+or `errors[]`, flag it as "LLM-derived; verify against current chart" in the final
+analysis.
+
+---
+
 ## Chart Pattern Analysis
 
 1. **Trend Identification**

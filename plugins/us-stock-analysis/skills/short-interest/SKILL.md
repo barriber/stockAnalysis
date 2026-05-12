@@ -7,6 +7,24 @@ description: Analyze FINRA short interest data, squeeze potential, cost-of-borro
 
 Comprehensive analysis of short selling activity, squeeze potential, cost-of-borrow dynamics, and bearish positioning signals for US-listed stocks. Combines FINRA short interest data, options market signals, and technical context to assess directional risk.
 
+## Step 0: Fetch Live Data (required)
+
+Before any squeeze scoring, fetch verified live numerics so this skill never anchors
+on training-cutoff knowledge for short interest, days-to-cover, or price:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,change_pct,volume,52w_high,52w_low,market_cap,short_pct_float,days_to_cover,beta
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. If a field appears in `missing[]` or `errors[]`, fall back to the most recent
+FINRA bi-monthly short-interest report and explicitly flag it as
+"LLM-derived; verify against FINRA" in the final assessment.
+
+All required fields are catalog-supported today; no major gaps.
+
+---
+
 ## Analysis Framework
 
 ### 1. Short Interest Overview

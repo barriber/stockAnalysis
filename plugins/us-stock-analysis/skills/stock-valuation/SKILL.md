@@ -13,6 +13,30 @@ Valuation is an art grounded in financial science. Each method has strengths and
 
 ---
 
+## Step 0: Fetch Live Data (required)
+
+Before any valuation method runs, fetch verified live numerics so the football
+field never anchors on training-cutoff knowledge for price, multiples, or
+analyst consensus:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,market_cap,ttm_revenue,ttm_net_income,ttm_eps,ttm_fcf,pe_ttm,pe_fwd,peg,analyst_pt_mean,analyst_pt_high,analyst_pt_low,analyst_count,total_debt,st_investments,diluted_shares,beta,rf_rate,erp
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. If a field appears in `missing[]` or `errors[]`, fall back to the most recent
+published 10-K/10-Q value and explicitly flag it as
+"LLM-derived; verify against latest filing" in the final triangulation.
+
+**Fields not yet exposed by `financial-manager`** (will appear in `missing[]`):
+
+- `cash`, `net_debt` — derive `net_debt ≈ total_debt − st_investments`
+  (short-term investments as a cash proxy); flag the imprecision.
+- `pb`, `ps`, `ev_ebitda`, `ev_fcf`, `ttm_capex` — flag as LLM-derived for the
+  comparable-company and EV-multiple methods.
+
+---
+
 ## When to Use Each Method
 
 ```

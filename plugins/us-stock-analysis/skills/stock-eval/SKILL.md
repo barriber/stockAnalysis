@@ -7,6 +7,28 @@ description: Comprehensive single-stock evaluation combining fundamentals, valua
 
 Perform comprehensive stock evaluation combining fundamental analysis, valuation modeling, quality scoring, and risk assessment to produce investment-grade conclusions.
 
+## Step 0: Fetch Live Data (required)
+
+Before any evaluation, fetch verified live numerics so this skill never anchors on
+training-cutoff knowledge for price, multiples, beta, or analyst consensus:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,change_pct,market_cap,ttm_revenue,ttm_net_income,ttm_eps,op_margin,net_margin,fcf_margin,pe_ttm,pe_fwd,peg,roe,roic,beta,rf_rate,erp,div_yield,analyst_pt_mean,analyst_pt_high,analyst_pt_low,analyst_count,analyst_rating,total_debt,st_investments,diluted_shares
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. If a field appears in `missing[]` or `errors[]`, fall back to the most recent
+published 10-K/10-Q value and explicitly flag it as
+"LLM-derived; verify against latest filing" in the final verdict.
+
+**Fields not yet exposed by `financial-manager`** (will appear in `missing[]`):
+
+- `cash`, `net_debt` — derive `net_debt ≈ total_debt − st_investments`
+  (short-term investments as a cash proxy); flag the imprecision.
+- `ev_ebitda` — flag as LLM-derived in the valuation multiples table.
+
+---
+
 ## Analysis Components
 
 ### 1. Company Overview

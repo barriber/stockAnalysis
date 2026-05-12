@@ -441,6 +441,47 @@ if (marketplace && readmeContent) {
   }
 }
 
+// ─── Test 11: Fetch-stock-data Adoption ─────────────────────────────────────
+
+section('11. Fetch-stock-data Adoption');
+
+// Skills required to invoke fetch-stock-data in their SKILL.md.
+// These are data-consuming analysis skills that previously relied on LLM
+// knowledge for live numerics; routing them through fetch-stock-data removes
+// the training-cutoff failure mode (e.g. a DCF anchored on a stale price).
+const FETCH_DATA_REQUIRED = [
+  'dcf-valuation',
+  'fundamental-analysis',
+  'stock-eval',
+  'stock-valuation',
+  'dividend-analysis',
+  'short-interest',
+  'institutional-ownership',
+  'competitor-analysis',
+  'insider-trading',
+  'technical-analysis',
+];
+
+const FETCH_INVOCATION = '/us-stock-analysis:fetch-stock-data';
+
+FETCH_DATA_REQUIRED.forEach(skill => {
+  const skillFile = path.join(SKILLS_DIR, skill, 'SKILL.md');
+  if (!fileExists(skillFile)) {
+    fail(`${skill}/SKILL.md — missing (required to invoke fetch-stock-data)`);
+    return;
+  }
+  const content = readFile(skillFile);
+  const hasInvocation = content.includes(FETCH_INVOCATION);
+  const hasFields = content.includes('--fields=');
+  if (hasInvocation && hasFields) {
+    pass(`${skill}/SKILL.md — invokes fetch-stock-data with --fields=`);
+  } else if (hasInvocation) {
+    fail(`${skill}/SKILL.md — references fetch-stock-data but missing --fields= argument`);
+  } else {
+    fail(`${skill}/SKILL.md — does NOT invoke fetch-stock-data (required for live data)`);
+  }
+});
+
 // ─── Final Summary ───────────────────────────────────────────────────────────
 
 process.stdout.write('\n' + '═'.repeat(60) + '\n');

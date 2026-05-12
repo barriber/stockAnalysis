@@ -7,6 +7,26 @@ description: Analyze insider buying and selling from SEC Form 4 filings to ident
 
 Comprehensive analysis of insider transaction activity to identify investment signals, patterns, and potential red flags from SEC Form 4 filings.
 
+## Step 0: Fetch Live Data (required)
+
+Before scoring insider sentiment, fetch verified live numerics so this skill never
+anchors on training-cutoff knowledge for price, 52w range, or ownership:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,market_cap,52w_high,52w_low,insider_ownership_pct,diluted_shares
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for the price and
+ownership context. The Form 4 transaction list itself (buys, sells, exercises,
+filer names, dollar amounts) is sourced from SEC EDGAR and remains LLM/EDGAR-supplied
+— the fetch above only anchors the price/ownership context against which those
+transactions are interpreted. If a field appears in `missing[]` or `errors[]`, flag
+it as "LLM-derived; verify against latest Form 4" in the final output.
+
+All requested fields are catalog-supported today; no major gaps.
+
+---
+
 ## Analysis Framework
 
 ### 1. Transaction Summary (Last 6-12 Months)

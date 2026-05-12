@@ -7,6 +7,25 @@ description: Analyze institutional holdings and 13F filings to track smart-money
 
 Comprehensive analysis of institutional investor holdings to identify "smart money" trends, ownership concentration, and investment signals from SEC 13F filings.
 
+## Step 0: Fetch Live Data (required)
+
+Before any 13F walk-through, fetch verified live numerics so this skill never anchors
+on training-cutoff knowledge for ownership percentages or share count:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,market_cap,diluted_shares,inst_ownership_pct,insider_ownership_pct
+```
+
+Parse the returned JSON envelope and use `data.<field>.v` for every numeric input
+below. The 13F holder list itself (top holders, quarterly changes) is sourced from
+SEC EDGAR and remains LLM/EDGAR-supplied; the fetch above only anchors aggregate
+ownership context. If a field appears in `missing[]` or `errors[]`, flag it as
+"LLM-derived; verify against latest 13F" in the final output.
+
+All requested fields are catalog-supported today; no major gaps.
+
+---
+
 ## Analysis Framework
 
 ### 1. Institutional Ownership Overview

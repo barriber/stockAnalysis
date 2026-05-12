@@ -17,6 +17,26 @@ This skill provides a structured, repeatable framework for moat identification, 
 
 ---
 
+## Step 0: Fetch Live Data (required)
+
+Before any peer comparison, fetch verified live numerics for the target so this
+skill never anchors on training-cutoff knowledge for margins, multiples, or returns:
+
+```
+/us-stock-analysis:fetch-stock-data <TICKER> --fields=price,market_cap,ttm_revenue,ttm_op_income,ttm_net_income,op_margin,net_margin,fcf_margin,rev_cagr_3y,rev_cagr_5y,pe_ttm,pe_fwd,peg,roe,roic
+```
+
+Repeat the fetch for each peer ticker before populating the comparable-company table.
+Use `data.<field>.v` for every numeric input. If a field appears in `missing[]` or
+`errors[]`, fall back to the most recent published 10-K/10-Q value and explicitly
+flag it as "LLM-derived; verify against latest filing" in the comp table.
+
+**Fields not yet exposed by `financial-manager`** (will appear in `missing[]`):
+
+- `pb`, `ps`, `ev_ebitda` — flag as LLM-derived in the peer comp table.
+
+---
+
 ## 1. Moat Identification Framework
 
 ### Five Sources of Economic Moat (Morningstar Framework)
