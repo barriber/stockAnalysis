@@ -75,7 +75,7 @@ Verify with: `jq '.version' plugins/us-stock-analysis/.claude-plugin/plugin.json
 
 ## Current State
 
-- **Version**: 1.5.0
+- **Version**: 1.6.0
 - **Skills**: 19 (auto-discovered from `plugins/us-stock-analysis/skills/`; `plugin.json` declares `"skills": "./skills/"`)
 - **Prompts**: 17 universal files in `prompts/` (`research-bundle` is meta-only; `report-generator` is HTML-output-only; `fetch-stock-data` is a Claude-Code-specific internal utility — none have standalone universal prompts)
 - **Node**: ≥18.0.0 required

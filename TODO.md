@@ -1,194 +1,194 @@
-# TODO - InvestSkill 改進計劃
+# TODO - InvestSkill Improvement Plan
 
-本文檔記錄 InvestSkill 專案的改進想法和待辦事項。
+This document tracks improvement ideas and pending tasks for the InvestSkill project.
 
-## 🎯 高優先級
+## 🎯 High Priority
 
-### 功能增強
-- [ ] **即時資料整合**
-  - 整合即時股價 API（如 Alpha Vantage, Yahoo Finance）
-  - 添加即時新聞來源整合
-  - 實作盤中警報功能
+### Feature Enhancements
+- [ ] **Real-time Data Integration**
+  - Integrate real-time stock price APIs (e.g., Alpha Vantage, Yahoo Finance)
+  - Add real-time news source integration
+  - Implement intraday alert functionality
 
-- [x] **進階分析技能**
-  - ✅ 添加選擇權分析技能（Greeks、隱含波動率、價差策略）（v1.2.0 完成）
-  - [ ] 實作量化分析技能（統計套利、因子分析）
-  - [ ] 添加配對交易分析
+- [x] **Advanced Analysis Skills**
+  - ✅ Add options analysis skill (Greeks, implied volatility, spread strategies) (Completed in v1.2.0)
+  - [ ] Implement quantitative analysis skill (statistical arbitrage, factor analysis)
+  - [ ] Add pairs trading analysis
 
-- [ ] **風險管理工具**
-  - 實作 VaR（風險價值）計算器
-  - 添加壓力測試情境分析
-  - 建立投資組合風險報告
+- [ ] **Risk Management Tools**
+  - Implement VaR (Value at Risk) calculator
+  - Add stress testing scenario analysis
+  - Build portfolio risk reports
 
-### 使用者體驗
-- [x] **互動式報告**
-  - ✅ 添加圖表視覺化支援（v1.1.0 完成）
-  - ✅ 建立 HTML/PDF 報告生成功能（v1.1.0 完成）
-  - ✅ 實作可匯出的分析報告（v1.1.0 完成）
+### User Experience
+- [x] **Interactive Reports**
+  - ✅ Add chart visualization support (Completed in v1.1.0)
+  - ✅ Build HTML/PDF report generation (Completed in v1.1.0)
+  - ✅ Implement exportable analysis reports (Completed in v1.1.0)
 
-- [ ] **自訂化選項**
-  - 允許使用者自訂分析參數
-  - 建立使用者偏好設定檔
-  - 添加個人化的觀察清單
+- [ ] **Customization Options**
+  - Allow users to customize analysis parameters
+  - Build user preference profiles
+  - Add personalized watchlists
 
-## 📊 中優先級
+## 📊 Medium Priority
 
-### 資料與整合
-- [ ] **加密貨幣支援**
-  - 添加加密貨幣技術分析
-  - 實作鏈上資料分析
-  - 整合加密貨幣新聞情緒
+### Data and Integration
+- [ ] **Cryptocurrency Support**
+  - Add cryptocurrency technical analysis
+  - Implement on-chain data analysis
+  - Integrate cryptocurrency news sentiment
 
-- [ ] **國際市場**
-  - 擴展至其他主要市場（歐洲、亞洲）
-  - 添加外匯分析技能
-  - 實作全球市場比較
+- [ ] **International Markets**
+  - Expand to other major markets (Europe, Asia)
+  - Add forex analysis skill
+  - Implement global market comparison
 
-- [x] **基本面資料增強**
-  - ✅ 整合財報電話會議記錄分析（v1.1.0 完成）
-  - ✅ 添加內部人交易追蹤（v1.1.0 完成）
-  - ✅ 實作機構持股變化分析（v1.1.0 完成）
-  - ✅ 添加股息分析技能（v1.2.0 完成）
-  - ✅ 添加空頭興趣分析技能（v1.2.0 完成）
-  - ✅ 添加 DCF 估值技能（v1.2.0 完成）
-  - ✅ 添加競爭分析護城河技能（v1.2.0 完成）
-  - ✅ 添加研究套組整合技能（v1.2.0 完成）
-  - ✅ 統一所有技能的信號輸出格式（v1.2.0 完成）
+- [x] **Fundamental Data Enhancements**
+  - ✅ Integrate earnings call transcript analysis (Completed in v1.1.0)
+  - ✅ Add insider trading tracking (Completed in v1.1.0)
+  - ✅ Implement institutional holdings change analysis (Completed in v1.1.0)
+  - ✅ Add dividend analysis skill (Completed in v1.2.0)
+  - ✅ Add short interest analysis skill (Completed in v1.2.0)
+  - ✅ Add DCF valuation skill (Completed in v1.2.0)
+  - ✅ Add competitor analysis moat skill (Completed in v1.2.0)
+  - ✅ Add research bundle integration skill (Completed in v1.2.0)
+  - ✅ Unify signal output format across all skills (Completed in v1.2.0)
 
-### 自動化與效率
-- [ ] **批次處理**
-  - 實作多股票批次分析
-  - 添加產業批次比較功能
-  - 建立自動化掃描器（技術形態、基本面篩選）
+### Automation and Efficiency
+- [ ] **Batch Processing**
+  - Implement multi-stock batch analysis
+  - Add sector batch comparison functionality
+  - Build automated scanners (technical patterns, fundamental screening)
 
-- [ ] **排程與通知**
-  - 添加定期報告排程
-  - 實作警報通知系統
-  - 建立財報日曆提醒
+- [ ] **Scheduling and Notifications**
+  - Add scheduled report generation
+  - Implement alert notification system
+  - Build earnings calendar reminders
 
-## 🔧 技術改進
+## 🔧 Technical Improvements
 
-### 程式碼品質
-- [ ] **測試覆蓋率**
-  - 添加單元測試
-  - 實作整合測試
-  - 建立 E2E 測試套件
+### Code Quality
+- [ ] **Test Coverage**
+  - Add unit tests
+  - Implement integration tests
+  - Build E2E test suite
 
-- [ ] **效能優化**
-  - 實作資料快取機制
-  - 優化 API 呼叫頻率
-  - 添加並行處理支援
+- [ ] **Performance Optimization**
+  - Implement data caching mechanism
+  - Optimize API call frequency
+  - Add parallel processing support
 
-- [ ] **錯誤處理**
-  - 改善錯誤訊息
-  - 添加詳細的日誌記錄
-  - 實作優雅的降級機制
+- [ ] **Error Handling**
+  - Improve error messages
+  - Add detailed logging
+  - Implement graceful degradation
 
-### 文檔與範例
-- [ ] **文檔擴展**
-  - 添加更多使用範例
-  - 建立影片教學
-  - 撰寫最佳實踐指南
+### Documentation and Examples
+- [ ] **Documentation Expansion**
+  - Add more usage examples
+  - Create video tutorials
+  - Write best practices guide
 
-- [ ] **開發者文檔**
-  - 建立架構文檔
-  - 添加 API 參考文檔
-  - 撰寫貢獻者指南（更詳細版本）
+- [ ] **Developer Documentation**
+  - Build architecture documentation
+  - Add API reference docs
+  - Write contributor guide (more detailed version)
 
-## 💡 創新功能
+## 💡 Innovative Features
 
-### AI/ML 增強
-- [ ] **機器學習模型**
-  - 實作價格預測模型
-  - 添加異常檢測
-  - 建立情緒分析模型
+### AI/ML Enhancements
+- [ ] **Machine Learning Models**
+  - Implement price prediction models
+  - Add anomaly detection
+  - Build sentiment analysis models
 
-- [ ] **自然語言處理**
-  - 新聞摘要與情緒分析
-  - 財報文字分析
-  - 社群媒體情緒追蹤
+- [ ] **Natural Language Processing**
+  - News summarization and sentiment analysis
+  - Earnings report text analysis
+  - Social media sentiment tracking
 
-### 進階分析
-- [ ] **回測引擎**
-  - 實作歷史回測功能
-  - 添加策略優化器
-  - 建立績效歸因分析
+### Advanced Analysis
+- [ ] **Backtesting Engine**
+  - Implement historical backtesting
+  - Add strategy optimizer
+  - Build performance attribution analysis
 
-- [ ] **配對交易與統計套利**
-  - 實作配對選擇演算法
-  - 添加協整性測試
-  - 建立配對交易信號生成器
+- [ ] **Pairs Trading and Statistical Arbitrage**
+  - Implement pair selection algorithms
+  - Add cointegration testing
+  - Build pairs trading signal generator
 
-- [ ] **技術分析增強**
-  - 添加更多技術指標（Elder Ray、Ichimoku、等）
-  - 實作圖表形態識別 AI
-  - 建立多時間框架分析
+- [ ] **Technical Analysis Enhancements**
+  - Add more technical indicators (Elder Ray, Ichimoku, etc.)
+  - Implement chart pattern recognition AI
+  - Build multi-timeframe analysis
 
-## 🌐 社群與生態系統
+## 🌐 Community and Ecosystem
 
-### 社群功能
-- [ ] **分享與協作**
-  - 建立分析分享平台
-  - 實作社群評分系統
-  - 添加協作分析功能
+### Community Features
+- [ ] **Sharing and Collaboration**
+  - Build analysis sharing platform
+  - Implement community rating system
+  - Add collaborative analysis features
 
-- [ ] **教育資源**
-  - 建立投資教育課程
-  - 添加互動式教學
-  - 撰寫市場分析文章
+- [ ] **Educational Resources**
+  - Build investment education courses
+  - Add interactive tutorials
+  - Write market analysis articles
 
-### 整合與擴展
-- [ ] **第三方整合**
-  - 整合券商 API（Interactive Brokers、TD Ameritrade）
-  - 添加投資組合追蹤服務整合
-  - 實作社群媒體整合
+### Integrations and Extensions
+- [ ] **Third-party Integrations**
+  - Integrate broker APIs (Interactive Brokers, TD Ameritrade)
+  - Add portfolio tracking service integrations
+  - Implement social media integrations
 
-- [ ] **插件生態系統**
-  - 建立插件開發框架
-  - 鼓勵社群開發新技能
-  - 建立插件市集審核流程
+- [ ] **Plugin Ecosystem**
+  - Build plugin development framework
+  - Encourage community-built skills
+  - Establish plugin marketplace review process
 
-## 🐛 已知問題與修復
+## 🐛 Known Issues and Fixes
 
-- [ ] 檢查所有 SKILL.md 的格式一致性
-- [ ] 驗證所有範例程式碼可執行
-- [ ] 更新過時的 API 端點
-- [ ] 修正錯字和文法錯誤
-- [ ] 統一用語（使用者名稱、路徑等）
+- [ ] Check format consistency across all SKILL.md files
+- [ ] Verify all example code is executable
+- [ ] Update outdated API endpoints
+- [ ] Fix typos and grammar errors
+- [ ] Unify terminology (usernames, paths, etc.)
 
-## 📝 文檔更新
+## 📝 Documentation Updates
 
-- [ ] 添加更多 GIF 示範
-- [ ] 建立常見問題（FAQ）區段
-- [ ] 添加疑難排解指南
-- [ ] 撰寫版本遷移指南
-- [ ] 建立貢獻者名人堂
+- [ ] Add more GIF demonstrations
+- [ ] Build FAQ section
+- [ ] Add troubleshooting guide
+- [ ] Write version migration guide
+- [ ] Build contributor hall of fame
 
-## 🔒 安全與合規
+## 🔒 Security and Compliance
 
-- [ ] **資料隱私**
-  - 實作資料加密
-  - 添加使用者資料管理功能
-  - 建立隱私權政策
+- [ ] **Data Privacy**
+  - Implement data encryption
+  - Add user data management features
+  - Establish privacy policy
 
-- [ ] **合規性**
-  - 確保符合金融資料使用規範
-  - 添加免責聲明強化
-  - 實作使用條款
+- [ ] **Compliance**
+  - Ensure compliance with financial data usage regulations
+  - Strengthen disclaimers
+  - Implement terms of service
 
 ---
 
-## 如何貢獻此 TODO
+## How to Contribute to This TODO
 
-如果您有新的想法或想要認領任務：
+If you have new ideas or want to claim a task:
 
-1. 在 GitHub Issues 中開啟討論
-2. 在相關項目旁標記您的名字
-3. 完成後更新此文檔並標記為已完成 [x]
+1. Open a discussion in GitHub Issues
+2. Mark your name next to the relevant item
+3. Update this document and mark as completed [x] when done
 
-**優先級說明：**
-- 🎯 高優先級：核心功能，直接影響使用者體驗
-- 📊 中優先級：重要但非立即需要的功能
-- 💡 創新功能：實驗性或長期發展功能
+**Priority Legend:**
+- 🎯 High Priority: Core features that directly impact user experience
+- 📊 Medium Priority: Important but not immediately needed features
+- 💡 Innovative Features: Experimental or long-term development features
 
-**最後更新：** 2026-02-24
+**Last Updated:** 2026-02-24

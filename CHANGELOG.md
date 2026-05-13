@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-05-13
+
+### Added
+- `research-bundle` skill — new **Interactive Playground Output** section that hands the
+  assembled report off to `/playground:playground` to render a single self-contained HTML
+  playground with sidebar tabs (Executive Summary + 5 phase tabs) and inline Chart.js
+  visualizations (radar, bar, donut/gauge, football-field, sensitivity heatmap, price+SMA
+  with RSI/MACD sub-charts, short-interest trend). Reuses the content and chart-data tables
+  already produced this turn — no re-analysis.
+  - Mode handling specified for `--skip`, `--quick`, `--compare`; `--visual` retained as a
+    no-op alias since playground rendering is now implicit.
+  - Pre-filled follow-up prompt for the playground's bottom prompt area suggests a
+    re-check cadence (`/research-bundle [TICKER] --quick` in 90 days).
+  - Playground addition is Claude-Code-specific (references `/playground:playground`) and
+    intentionally not mirrored into `prompts/research-bundle.md` (universal prompt stays
+    AI-agnostic).
+
+### Changed
+- Bumped plugin version `1.5.0` → `1.6.0` (minor, additive feature in existing skill).
+
 ## [1.5.0] - 2026-05-02
 
 ### Added

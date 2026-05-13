@@ -211,6 +211,87 @@ Provide a unified research bundle report with:
 - Bar chart data for phase score summary
 - Chart specifications for HTML report generation via `/report-generator`
 
+---
+
+## Interactive Playground Output
+
+After the full report is assembled (all five phases, composite score, bull/bear case, entry/exit, monitoring plan), hand it off to `/playground:playground` so the user gets a single self-contained HTML playground with charts they can click through, instead of scrolling one long markdown response.
+
+**Invoke**: `/playground:playground`
+
+Pass the playground skill the following spec — do **not** re-run any analysis; reuse the content and chart-data tables already produced this turn:
+
+- **Template**: `data-explorer` (sidebar of selectable sections, main preview pane on the right)
+- **Charting**: inline Chart.js via CDN inside the generated HTML; render every chart client-side
+- **Title**: `Research Bundle — [TICKER] — [YYYY-MM-DD]`
+- **Tab order**: Executive Summary → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
+
+### Tab specifications
+
+**Main tab — Executive Summary** (default selection)
+- Sources: aggregated composite output
+- Charts:
+  - Radar chart of the 5 composite sub-scores (Business Quality, Valuation, Market Signals, Technical Setup, Risk)
+  - Horizontal bar chart of phase scores 0–10
+  - Donut/gauge of the final composite score with Buy/Hold/Sell band coloring
+- Content: Investment Thesis (2–3 paragraphs), Composite Score Card table, Standard Signal block
+
+**Phase 1 tab — Business & Competitive Foundation**
+- Sources: `/competitor-analysis` + `/fundamental-analysis`
+- Charts:
+  - Porter's Five Forces radar
+  - 5-year revenue / operating-margin / ROIC line chart
+  - Peer-comparison grouped bar (ROIC, gross margin, net margin vs. peers)
+- Content: moat assessment, financial-strength scorecard, peer table
+
+**Phase 2 tab — Valuation**
+- Sources: `/dcf-valuation` + `/stock-eval`
+- Charts:
+  - DCF football-field — Bear/Base/Bull intrinsic-value range bar vs. current price
+  - WACC × terminal-growth sensitivity heatmap
+  - Multiples bar chart vs. peers (P/E, EV/EBITDA, P/S, P/FCF)
+- Content: scenario assumptions, fair-value summary, margin-of-safety %
+
+**Phase 3 tab — Market Signals**
+- Sources: `/insider-trading` + `/institutional-ownership` + `/earnings-call-analysis`
+- Charts:
+  - Insider net-shares-bought-vs-sold bar (last 4 quarters)
+  - Top-10 institutional holders horizontal bar with QoQ change
+  - Earnings-call sentiment timeline (last 4 calls)
+- Content: Form 4 transactions, 13F top-holders, key management quotes
+
+**Phase 4 tab — Technical Timing**
+- Source: `/technical-analysis --chart`
+- Charts:
+  - Price + 50/200 SMA + volume (line + bar combo)
+  - RSI sub-chart with 30/70 bands
+  - MACD sub-chart
+  - Support/resistance levels as horizontal annotations on the price chart
+- Content: support/resistance levels, momentum table, entry-range recommendation
+
+**Phase 5 tab — Risk Assessment**
+- Sources: `/short-interest` (+ optional `/options-analysis`)
+- Charts:
+  - Short-interest % of float trend line (last 12 months)
+  - Days-to-cover bar
+  - Optional: IV-rank gauge, put/call ratio time series
+- Content: squeeze-risk scorecard, downside scenarios
+
+### Mode handling
+
+- **`--skip <phase>`** — the corresponding phase tab still appears, but its body renders a *"Skipped — not analyzed in this run"* placeholder so tab order stays stable.
+- **`--quick`** — every phase tab shows only the headline metric and its primary chart (drop the sub-tables).
+- **`--compare`** — Executive Summary tab shows a grouped bar chart comparing composite scores across all supplied tickers; each phase tab renders the same metric side-by-side per ticker.
+- **`--visual`** — now implicit (playground is always on); flag retained as a no-op alias for backward compatibility.
+
+### Follow-up prompt
+
+The playground template's bottom prompt area should be pre-filled with a copy-able next-step prompt, e.g.:
+
+> Re-run `/research-bundle [TICKER] --quick` in 90 days to recheck the thesis.
+
+The playground skill will write a single self-contained HTML file and open it in the default browser.
+
 ## Standard Signal Output
 
 All analysis concludes with this standardized block:
